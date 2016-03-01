@@ -8,6 +8,9 @@ gem 'sqlite3'
 
 gem 'pry-rails'
 
+gem 'carrierwave', '~> 0.10.0'
+
+gem 'mini_magick', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -16,6 +19,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -37,8 +42,13 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-group :production do
-  gem 'pg'
+# group :production do
+#   gem 'pg'
+# end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
 end
 
 # Use unicorn as the app server
