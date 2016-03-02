@@ -33,6 +33,19 @@ class Movie < ActiveRecord::Base
     end
   end
 
+
+  def self.search(search, search_dir, runtime_in_minutes)
+    if runtime_in_minutes and !search.empty? and !search_dir.empty?
+      where('title LIKE ?', "%#{search}%").where('director LIKE ?', "%#{search_dir}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")#.where('director = ?', "%#{search_dir}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")
+    elsif runtime_in_minutes and !search.empty? and search_dir.empty?
+      where('title LIKE ?', "%#{search}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")#.where('director = ?', "%#{search_dir}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")
+    elsif runtime_in_minutes and search.empty? and !search_dir.empty?
+      where('director LIKE ?', "%#{search_dir}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")#.where('director = ?', "%#{search_dir}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")
+    end
+  end
+
+
+
   protected
 
   def release_date_is_in_the_past

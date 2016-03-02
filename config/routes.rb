@@ -3,6 +3,12 @@ RottenMangoes::Application.routes.draw do
   resource :user, only: [:new, :create]
 
   resources :movies do
+    # member do
+    #   post :movie
+    # end
+    collection do
+      get :search
+    end
     resources :reviews, only: [:new, :create]
   end
 
