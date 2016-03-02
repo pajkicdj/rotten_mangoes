@@ -34,14 +34,9 @@
   <% if admin? %>
     <div>
       <%= f.label :admin %><br>
-      <%= f.text_field :admin %>
+      <%= f.check_box :admin %> 
     </div>
   <% end %>
 
   <div><%= f.submit "Submit" %></div>
 <% end %>
-
-
-
-
-

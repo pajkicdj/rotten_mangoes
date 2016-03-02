@@ -1,6 +1,6 @@
 RottenMangoes::Application.routes.draw do
 
-  resource :user, only: [:new, :create]
+  resource :user
 
   resources :movies do
     # member do
