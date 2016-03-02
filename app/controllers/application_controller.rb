@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    (@current_user.admin.nil? || @current_user.admin == false) ? false : true
+    if current_user
+      (@current_user.admin.nil? || @current_user.admin == false) ? false : true
+    end
   end
 
   helper_method :admin?

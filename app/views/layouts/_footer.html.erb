@@ -2,6 +2,10 @@
   <small>
     <% if current_user %>
       Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+      <%= link_to "Delete User", user_path(@user), method: :delete, data: {confirm: "You sure?"} %>
+      <hr>
+      <%= link_to "Your Profile", user_path %><br/>
+
       <% if admin? %>
         <%= link_to "You have admin access, click here to view all users", admin_users_path %>
       <% end %>

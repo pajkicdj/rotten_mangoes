@@ -1,7 +1,7 @@
 <h1>Rotten Mangoes</h1>
 <%= link_to "Back to all movies", movies_path %><br/>
 
-<%= link_to "Make a new User", new_user_path %>
+<%= link_to "Make a new User", new_admin_user_path %>
 <hr>
 
 <%= paginate @users %>
@@ -10,5 +10,6 @@
   <h2><%= link_to user.full_name, admin_user_path(user) %></h2>
   <h3><%= user.email %></h3>
   <h4>Admin: <%= user.admin %></h4>
+  
   <hr>
 <% end %>

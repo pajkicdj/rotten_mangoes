@@ -3,4 +3,5 @@
 <h2><%= @user.full_name %></h2>
 <h3><%= @user.email %></h3>
 <h4>Admin: <%= @user.admin %></h4>
+<%= link_to "Delete User", admin_user_path(@user), method: :delete, data: {confirm: "You sure?"} %>
 <hr>

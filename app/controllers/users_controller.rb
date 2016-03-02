@@ -7,10 +7,27 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to movies_path, notice: "Welcome aboard, #{@user.firstname}!"
+      if admin?
+        redirect_to admin_users_path, notice: "You successfully created #{@user.firstname}!"
+      else
+        session[:user_id] = @user.id
+        redirect_to movies_path, notice: "Welcome aboard, #{@user.firstname}!"
+      end
     else
       render :new
+    end
+  end
+
+  def show
+  end
+
+  def destroy
+    if !admin?
+      @user = current_user
+      @user.destroy
+      username = @user.firstname
+      session[:user_id] = nil
+      redirect_to movies_path, notice: "Adios!"
     end
   end
 
