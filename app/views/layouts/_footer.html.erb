@@ -6,7 +6,7 @@
       <hr>
       <%= link_to "Your Profile", user_path %><br/>
 
-      <% if admin? %>
+      <% if is_admin? %>
         <%= link_to "You have admin access, click here to view all users", admin_users_path %>
       <% end %>
     <% else %>

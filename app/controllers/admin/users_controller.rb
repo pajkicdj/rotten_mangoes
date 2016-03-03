@@ -20,19 +20,25 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)  
-  #   if @user.save
-  #     redirect_to admin_users_path, notice: "You successfully created #{@user.firstname}!"
-  #   else
-  #     render :new
-  #   end
+    @user = User.new(user_params) 
+    puts user_params 
+    if @user.save
+      redirect_to admin_users_path, notice: "You successfully created #{@user.firstname} with #{@user.admin?}!"
+    else
+      render :new
+    end
   end
 
+
+
+
+  
   def update
+
     @user = User.find(params[:id])
 
     if @user.update_attributes(user_params)
-      redirect_to user_path(@user)
+      redirect_to admin_users_path, notice: "You successfully updated #{@user.firstname}!"
     else
       render :edit
     end
@@ -41,11 +47,11 @@ class Admin::UsersController < ApplicationController
   def destroy
 
     @user = User.find(params[:id])
-    if admin?
+    if is_admin?
       username = @user.firstname
       @user.destroy
       UserMailer.termination_email(@user).deliver
-      redirect_to admin_users_path, notice: "You successfully deleted your user, #{username}!"
+      redirect_to admin_users_path, notice: "You successfully deleted the user, #{username}!"
     else
         render :new
     end
@@ -55,7 +61,7 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :email, :password_digest, :firstname, :lastname, :admin, :checkbox_value
+      :email, :password_digest, :firstname, :lastname, :admin
     )
   end
 
