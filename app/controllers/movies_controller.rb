@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
     if params[:runtime_in_minutes].nil?
       @movies = Movie.all.page(params[:page]).per(2)
     else
-      @movies = Movie.search(params[:search], params[:search_dir], params[:runtime_in_minutes]).page(params[:page]).per(2)
+      @movies = Movie.search(params[:search], params[:runtime_in_minutes]).page(params[:page]).per(2)
       #Kaminari.paginate_array(@movies).page(params[:page]).per(2)
     end
   end
