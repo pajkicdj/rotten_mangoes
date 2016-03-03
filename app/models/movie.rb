@@ -33,9 +33,11 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  scope :search_movies, ->(search, runtime_in_minutes) {
-    where('title LIKE ? OR director LIKE ?', "%#{search}%", "%#{search}%").where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")
+  scope :search_term, ->(search) {
+    where('title LIKE ? OR director LIKE ?', "%#{search}%", "%#{search}%")
   }
+
+  scope :runtime, ->(runtime_in_minutes) {where("runtime_in_minutes BETWEEN #{runtime_in_minutes}")}
 
   # def self.search(search, runtime_in_minutes)
   #   if runtime_in_minutes and !search.empty? 
