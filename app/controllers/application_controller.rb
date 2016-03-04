@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+
   def current_admin
     @current_admin ||= User.find(session[:admin_id]) if session[:admin_id]
   end
@@ -31,14 +33,12 @@ class ApplicationController < ActionController::Base
     session[:can_switch] == false
   end
 
-
-
-
-
+  
   helper_method :is_admin?
   helper_method :current_user
   helper_method :is_switched?
   helper_method :current_admin
+
  
 
 end

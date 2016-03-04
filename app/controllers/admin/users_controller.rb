@@ -1,7 +1,9 @@
 class Admin::UsersController < ApplicationController
+  
 
   # before_action :check_admin
   before_filter :restrict_access
+  before_filter :is_admin_redirect
 
   def index
     @users = User.all.page(params[:page]).per(2)
@@ -78,6 +80,13 @@ class Admin::UsersController < ApplicationController
   # end
 
   protected
+  
+  def is_admin_redirect
+    if !is_admin?
+      flash[:alert] = "You must be an Admin to view this page."
+      redirect_to movies_path
+    end
+  end
 
   def user_params
     params.require(:user).permit(
