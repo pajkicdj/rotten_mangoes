@@ -9,7 +9,10 @@
       <% if is_admin? %>
         <%= link_to "You have admin access, click here to view all users", admin_users_path %>
       <% end %>
-    <% else %>
+      <% if is_switched? %>
+          <%= link_to "Switch back to Admin Account", switchback_path %>
+          <% end %>
+      <% else %>
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
   </small>

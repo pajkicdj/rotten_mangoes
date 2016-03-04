@@ -29,8 +29,24 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  # def current_admin
+  #   @current_admin ||= User.find(session[:admin_id]) if session[:admin_id]
+  # end
+
+  def switch
+    @user = User.find(params[:id])
+    session[:user_id] = @user.id
+    session[:can_switch] = false
+    redirect_to movies_path, notice: "You've switched to #{@user.firstname}!"
+  end
 
 
+  def switchback
+    session[:user_id] = session[:admin_id]
+    session[:can_switch] = true
+    @current_user = User.find(session[:admin_id])
+    redirect_to admin_users_path, notice: "You've switched back to admin! (#{current_admin.full_name})"
+  end
 
   
   def update
@@ -56,6 +72,10 @@ class Admin::UsersController < ApplicationController
         render :new
     end
   end
+
+  # def can_switch(user)
+  #   user.id != session[:admin_id]
+  # end
 
   protected
 

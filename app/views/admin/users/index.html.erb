@@ -10,6 +10,9 @@
   <h2><%= link_to user.full_name, admin_user_path(user) %></h2>
   <h3><%= user.email %></h3>
   <h4>Admin: <%= user.admin? %></h4>
-  
+  <% if can_switch(user.id) && !is_switched? %>
+<!--   % if (user.id == current_admin.id) && !is_switched? % -->
+    <%= link_to "Switch User", switch_path(id: user.id) %>
+  <% end %>
   <hr>
 <% end %>

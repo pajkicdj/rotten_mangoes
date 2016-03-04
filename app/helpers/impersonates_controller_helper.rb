@@ -1,0 +1,2 @@
+module ImpersonatesControllerHelper
+end
