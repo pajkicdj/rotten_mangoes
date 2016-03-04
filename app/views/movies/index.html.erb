@@ -3,7 +3,7 @@
 <hr>
 
 <%= form_tag movies_path, method: 'get' do %>
-  <%= label_tag(:search, "Search for: Title:") %>
+  <%= label_tag(:search, "Search for:") %>
   <%= text_field_tag :search, params[:search] %>
   <%= select_tag(:runtime_in_minutes,options_for_select([["Any Length", "0 AND 1000"], ["Under 90 minutes" , "0 AND 90" ], ["Between 90 and 120 minutes" , "90 AND 120" ], ["Over 120 minutes" , "120 AND 1000" ]])) %>
   <%= submit_tag "Search", name: nil %>

@@ -29,7 +29,7 @@ class Movie < ActiveRecord::Base
     if reviews.size < 1
       "There are no reviews yet for this movie" #{title}"
     else
-      avg = reviews.sum(:rating_out_of_ten)/reviews.size
+      avg = "#{reviews.sum(:rating_out_of_ten)/reviews.size}/10"
     end
   end
 
